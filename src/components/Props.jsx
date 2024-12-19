@@ -1,30 +1,29 @@
 "use strict";
 
-import PropTypes from 'prop-types'; // Import PropTypes
+import PropTypes from "prop-types"; // Import PropTypes
 
 function Props({ message }) {
-    return (
-        <div className="card mb-3">
-            <div className="card-body">
-                <h5 className="card-title">Props Example</h5>
-                <p className="card-text">{message}</p>
-            </div>
-        </div>
-    );
+  return (
+    <div className="card mb-3">
+      <div className="card-body">
+        <h5 className="card-title">Props Example</h5>
+        <p className="card-text">{message}</p>
+      </div>
+    </div>
+  );
 }
 
-// Define the expected prop types
 Props.propTypes = {
-    message: PropTypes.string.isRequired, // 'message' must be a string and it's required
+  message: PropTypes.string.isRequired,
 };
 
 export default function ParentComponent() {
-    const message = `
+  const message = `
        *   
       ***  
      ***** 
       |||    
   `;
 
-    return <Props message={message} />;
+  return <Props message={message} />;
 }
