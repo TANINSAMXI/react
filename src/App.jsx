@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import EmojiList from "./components/SmilesList.jsx";
+import ShowResults from "./components/Result.jsx";
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      emojis: [
+        { id: 1, symbol: "😈", votes: 0 },
+        { id: 2, symbol: "👹", votes: 0 },
+        { id: 3, symbol: "⃝💀", votes: 0 },
+        { id: 4, symbol: "🥶", votes: 0 },
+        { id: 5, symbol: "👽", votes: 0 },
+      ],
+      winner: null,
+    };
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + JavaScript</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    this.handleVote = this.handleVote.bind(this);
+    this.showResults = this.showResults.bind(this);
+  }
+
+  handleVote(id) {
+    const updatedEmojis = this.state.emojis.map((emoji) => {
+      if (emoji.id === id) {
+        return { ...emoji, votes: emoji.votes + 1 };
+      }
+      return emoji;
+    });
+
+    this.setState({ emojis: updatedEmojis });
+  }
+
+  showResults() {
+    const allVotesZero = this.state.emojis.every((emoji) => emoji.votes === 0);
+
+    if (allVotesZero) {
+      this.setState({ winner: null });
+      return;
+    }
+
+    const winnerEmoji = this.state.emojis.reduce((prev, current) => {
+      return prev.votes > current.votes ? prev : current;
+    });
+
+    this.setState({ winner: winnerEmoji });
+  }
+
+  render() {
+    return (
+      <div className="container text-center mt-4">
+        <h1 className="mb-4">Best of the best</h1>
+        <EmojiList emojis={this.state.emojis} onVote={this.handleVote} />
+        <button className="btn btn-primary mt-4" onClick={this.showResults}>
+          Show Results
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        {this.state.winner && <ShowResults winner={this.state.winner} />}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    );
+  }
 }
 
-export default App
+export default App;
