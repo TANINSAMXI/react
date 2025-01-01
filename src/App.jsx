@@ -1,4 +1,4 @@
-import EmojiList from "./components/SmilesList.jsx";
+import SmilesList from "./components/SmilesList.jsx";
 import ShowResults from "./components/Result.jsx";
 import React from "react";
 
@@ -50,7 +50,7 @@ class App extends React.Component {
     return (
       <div className="container text-center mt-4">
         <h1 className="mb-4">Best of the best</h1>
-        <EmojiList emojis={this.state.emojis} onVote={this.handleVote} />
+        <SmilesList emojis={this.state.emojis} onVote={this.handleVote} />
         <button className="btn btn-primary mt-4" onClick={this.showResults}>
           Show Results
         </button>
