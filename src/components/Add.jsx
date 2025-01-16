@@ -1,25 +1,31 @@
+import React from "react";
 import PropTypes from "prop-types";
 
-const Add = ({ newTodoText, addTodo, handleInputChange }) => {
-  return (
-    <div className="add">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addTodo(newTodoText);
-        }}
-      >
-        <input
-          type="text"
-          value={newTodoText}
-          onChange={(e) => handleInputChange(e)}
-          placeholder="Add your task"
-        />
-        <button type="submit">Add</button>
-      </form>
-    </div>
-  );
-};
+class Add extends React.Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { newTodoText, addTodo } = this.props;
+    addTodo(newTodoText);
+  };
+
+  render() {
+    const { newTodoText, handleInputChange } = this.props;
+
+    return (
+      <div className="add">
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={newTodoText}
+            onChange={(e) => handleInputChange(e)}
+            placeholder="Add your task"
+          />
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    );
+  }
+}
 
 Add.propTypes = {
   newTodoText: PropTypes.string.isRequired,
