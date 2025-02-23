@@ -66,9 +66,9 @@ const TaskForm = ({ taskId }) => {
           <BootstrapForm.Group className="mb-3">
             <BootstrapForm.Label>Status</BootstrapForm.Label>
             <Field name="status" as="select" className="form-select">
-              <option value="нове">New</option>
-              <option value="в роботі">In process</option>
-              <option value="завершене">Complete</option>
+              <option value="new">New</option>
+              <option value="in process">In process</option>
+              <option value="complete">Complete</option>
             </Field>
           </BootstrapForm.Group>
 

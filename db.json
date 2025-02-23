@@ -1,25 +1,25 @@
 {
   "tasks": [
     {
-      "id": "2",
+      "id": 1,
+      "title": "Finish the project",
+      "description": "Finalize tasks and do the final refactoring",
+      "status": "in progress",
+      "priority": "high"
+    },
+    {
+      "id": 2,
       "title": "Buy groceries",
       "description": "Milk, bread, vegetables",
       "status": "new",
       "priority": "medium"
     },
     {
-      "id": "3",
-      "title": "fgdgdgd",
-      "description": "dgdgdgd",
-      "status": "в роботі",
-      "priority": "high"
-    },
-    {
-      "id": "4908",
-      "title": "egemhkrhmrhmrhm",
-      "description": "rrkhrhnrhnohor",
-      "status": "завершене",
-      "priority": "high"
+      "id": 3,
+      "title": "Book a dentist appointment",
+      "description": "Check-up every 6 months",
+      "status": "complete",
+      "priority": "low"
     }
   ]
 }
