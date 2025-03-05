@@ -1,73 +1,61 @@
 import { useState } from "react";
-import { novaPostApi } from "../api/novaPostApi";
-import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../features/cart/cartSlice";
+import { Form, Button, Input, SelectPicker } from "rsuite";
+
+const deliveryOptions = [
+  { label: "Нова Пошта", value: "nova_poshta" },
+  { label: "Укрпошта", value: "ukrposhta" },
+];
+
+const paymentOptions = [
+  { label: "Картка", value: "card" },
+  { label: "Готівка при отриманні", value: "cash" },
+];
 
 const Checkout = () => {
-  const { items, totalAmount } = useSelector((state) => state.cart);
-  const [shippingMethod, setShippingMethod] = useState(null);
-  const [paymentMethod, setPaymentMethod] = useState(null);
-  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    address: "",
+    delivery: "",
+    payment: "",
+  });
 
-  const shippingMethods = novaPostApi.getShippingMethods();
-  const paymentMethods = novaPostApi.getPaymentMethods();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const orderData = {
-      items,
-      totalAmount,
-      shippingMethod,
-      paymentMethod,
-    };
-
-    console.log(orderData);
-
-    alert("Order placed!");
-    dispatch(clearCart());
+  const handleSubmit = () => {
+    console.log("Замовлення:", formData);
+    alert("Замовлення оформлено!");
   };
 
   return (
-    <div>
-      <h1>Checkout</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <h3>Shipping Method</h3>
-          {shippingMethods.map((method) => (
-            <label key={method.id}>
-              <input
-                type="radio"
-                name="shipping"
-                value={method.id}
-                onChange={() => setShippingMethod(method.id)}
-              />
-              {method.name}
-            </label>
-          ))}
-        </div>
-
-        <div>
-          <h3>Payment Method</h3>
-          {paymentMethods.map((method) => (
-            <label key={method.id}>
-              <input
-                type="radio"
-                name="payment"
-                value={method.id}
-                onChange={() => setPaymentMethod(method.id)}
-              />
-              {method.name}
-            </label>
-          ))}
-        </div>
-
-        <div>
-          <h3>Total: ${totalAmount}</h3>
-          <button type="submit">Place Order</button>
-        </div>
-      </form>
-    </div>
+    <Form
+      fluid
+      onChange={(value) => setFormData(value)}
+      onSubmit={handleSubmit}
+    >
+      <h2>Оформлення замовлення</h2>
+      <Form.Group>
+        <Form.ControlLabel>П.I.Б</Form.ControlLabel>
+        <Input name="name" required />
+      </Form.Group>
+      <Form.Group>
+        <Form.ControlLabel>Телефон</Form.ControlLabel>
+        <Input name="phone" required />
+      </Form.Group>
+      <Form.Group>
+        <Form.ControlLabel>Адреса</Form.ControlLabel>
+        <Input name="address" required />
+      </Form.Group>
+      <Form.Group>
+        <Form.ControlLabel>Спосіб доставки</Form.ControlLabel>
+        <SelectPicker data={deliveryOptions} block name="delivery" />
+      </Form.Group>
+      <Form.Group>
+        <Form.ControlLabel>Спосіб оплати</Form.ControlLabel>
+        <SelectPicker data={paymentOptions} block name="payment" />
+      </Form.Group>
+      <Button appearance="primary" type="submit">
+        Підтвердити замовлення
+      </Button>
+    </Form>
   );
 };
 

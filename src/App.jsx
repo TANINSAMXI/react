@@ -1,26 +1,26 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/ Footer.jsx";
-import Home from "./pages/Home";
-import Product from "./pages/Product";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Catalog from "./pages/Catalog";
+import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import Header from "./components/Header";
+import SearchResults from "./pages/SearchResults";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
-const App = () => {
+function App() {
   return (
     <Router>
       <Header />
-      <div className="container">
-        <Routes>
-          <Route path="/" exact component={Home} />
-          <Route path="/product/:productId" component={Product} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/checkout" component={Checkout} />
-        </Routes>
-      </div>
-      <Footer />
+
+      <Routes>
+        <Route path="/" element={<Catalog />} />
+        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/search" element={<SearchResults />} />{" "}
+      </Routes>
     </Router>
   );
-};
+}
 
 export default App;
