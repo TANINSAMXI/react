@@ -3,7 +3,7 @@ import { useGetProductQuery, useGetProductsQuery } from "../store/apiSlice";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
 import { Button, Panel, List } from "rsuite";
-import { Link } from "react-router-dom"; // ✅ Add this import
+import { Link } from "react-router-dom";
 
 const ProductPage = () => {
   const { id } = useParams();

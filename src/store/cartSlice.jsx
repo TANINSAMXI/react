@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  items: [], // ✅ Має бути масив
+  items: [],
   totalAmount: 0,
 };
 

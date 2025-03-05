@@ -1,4 +1,3 @@
-// Header.jsx
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Badge, InputGroup, Input } from "rsuite";
@@ -36,7 +35,7 @@ const Header = () => {
             placeholder="Пошук товарів..."
             value={searchQuery}
             onChange={(value) => handleSearchChange(value)}
-            onPressEnter={handleSearchSubmit} // Handle search on Enter key press
+            onPressEnter={handleSearchSubmit}
           />
           <InputGroup.Button onClick={handleSearchSubmit}>
             <BsSearch />

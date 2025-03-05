@@ -60,7 +60,7 @@ const Filters = ({ onApplyFilters }) => {
 };
 
 Filters.propTypes = {
-  onApplyFilters: PropTypes.func.isRequired, // onApplyFilters is a required function
+  onApplyFilters: PropTypes.func.isRequired,
 };
 
 export default Filters;

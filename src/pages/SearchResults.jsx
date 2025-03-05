@@ -1,4 +1,3 @@
-// SearchResults.jsx
 import { useLocation, Link } from "react-router-dom";
 import { useGetProductsQuery } from "../store/apiSlice";
 import { useDispatch } from "react-redux";
